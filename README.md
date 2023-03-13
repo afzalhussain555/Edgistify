@@ -1,24 +1,69 @@
-# Edgistify 
+# Quiz App
 
-This is a Node.js Express server that handles user registration, login, and event creation and attendance. The server uses JWT authentication for protecting certain routes, such as the route for creating events or viewing attendees.
-The application that uses several libraries such as Express, Passport, and Sequelize to provide APIs for registering and logging in users, creating and retrieving events, and managing attendees.
-Overall, this application provides a secure and efficient way for users to create and manage events and attendees.
-The application also defines a passport-jwt strategy for authentication with JWT tokens. The strategy uses the jsonwebtoken package to decode and verify the token, and queries the database to retrieve the user associated with the token.
-It also uses bcrypt for password hashing to securely store user passwords.
+This Node.js application is a quiz application that allows users to register, login, create quizzes and attempt them. It uses Passport.js for authentication, JSON Web Tokens (JWTs) for authorization, Sequelize as an ORM, and bcrypt for password hashing.
 
-The application uses JWT (JSON Web Tokens) for authentication and authorization, which is a standard method for securely transmitting information between parties. It also uses bcrypt for password hashing to securely store user passwords.
-The server uses the following middleware:
-1. express.urlencoded() and express.json(): parse incoming requests with urlencoded or JSON payloads
-2. passport.initialize(): initialize Passport for authentication
-3. passport.authenticate('jwt', { session: false }): authenticate with JWT token, with session disabled
-4. cors(): enable Cross-Origin Resource Sharing (CORS) for all routes
+### Setup
+Clone the repository
+bash
+$ git clone https://github.com/afzalhussain555/Edgistify.git
 
-The server defines the following routes:
 
-1. POST /register: creates a new user with a username, password, and full name. Returns the user and a JWT token.
-2. POST /login: logs in a user with a username and password. Returns the user and a JWT token.
-3. POST /events: creates a new event with a name, start and end time, and capacity. Requires authentication with JWT. Returns the new event.
-4. GET /events: retrieves all events. Does not require authentication.
-5. GET /attendees: retrieves attendees for an event. Requires authentication with JWT. Accepts query parameters for filtering attendees by ID, event ID, or user ID. Returns the attendees.
-6. POST /attendees: creates a new attendance request for an event. Requires authentication with JWT. Accepts the event ID in the request body. Checks if the user has already sent a request to join the event.
+### Install dependencies
 
+$ npm install
+
+
+### Start the server
+
+$ npm start
+
+
+## Features
+* User registration and login with password hashing
+
+* JSON Web Tokens for authorization
+
+* User authentication using Passport.js
+
+* Ability to create quizzes with multiple-choice questions
+
+* Randomly generated quiz URLs
+
+* Ability to attempt quizzes and see the score at the end
+
+* Admin can view all quizzes and their results
+
+## API Endpoints
+1. POST /register: Registers a new user.
+
+2. POST /login: Logs in a user and returns a JWT.
+
+3. POST /quiz: Creates a new quiz.
+
+4. GET /quiz: Retrieves a quiz by its URL.
+
+5. POST /attempt/:quizUrl: Submits an attempt for a quiz.
+
+6. GET /admin/quizzes: Retrieves all quizzes created by a specific user.
+
+
+
+## Dependencies
+
+* express: Web framework for Node.js.
+
+* dotenv: Loads environment variables from a .env file.
+
+* jsonwebtoken: Generates and verifies JSON Web Tokens.
+
+* passport: Authentication middleware for Node.js.
+
+* sequelize: Object-relational mapping library for Node.js.
+
+* bcrypt: Library for hashing passwords.
+
+* cors: Middleware for handling Cross-Origin Resource Sharing.
+
+* crypto: Cryptography library for generating random codes.
+
+* passport-jwt: Passport.js strategy for authenticating with JSON Web Tokens.
